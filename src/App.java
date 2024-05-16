@@ -2,40 +2,61 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import classes.Conta;
+import classes.ContaCorrente;
+import classes.ContaPoupanca;
+import classes.ContaSalario;
 public class App {
     public static void main(String[] args) throws Exception {
         
         ArrayList<Conta> contas = new ArrayList<Conta>();
-        Scanner scanner = new Scanner(System.in);
-        contas.add(new Conta(1, 123, 1234, 0,
-                             "Aline Frescura", "118.358.419-96", 1, "1234567812345", "123" ));
+        contas.add(new ContaCorrente(1, 123, 1234, 0,
+                             "Aline Frescura", "118.358.419-96", 
+                             "1234567812345", "123" ));
+
+        contas.add(new ContaSalario(2, 123, 1234, 0,
+                                   "Aline Frescura", "118.358.419-96", 
+                                   "1234567812345", "123" ));
+
+        contas.add(new ContaPoupanca(3, 123, 1234, 0,
+                                     "Aline Frescura", "118.358.419-96", 
+                                     "1234567812345", "123" ));
+      
+      Scanner scanner = new Scanner(System.in);    
+      
+      
         //1 - Ir até um caixa eletronico
         //ENTRADA
         //2 - Inserir 0 Cartão
         //2.1 - Ler dados do cartão
         System.out.println("Insira o numero do cartão: ");
         String numeroCartao = scanner.nextLine();
+        
+
         Conta contaSaque = null;
         for(Conta conta : contas){
             // se o número do cartão for igual ao número do cartão de uma conta
-            if (conta getNumeroCartao().equals(numeroCartao)) {
+            if (conta.getNumeroCartao().equals(numeroCartao)) {
                 contaSaque = conta;
                 break;
             }
         }
         if (contaSaque == null) {
-            throw new Error( "Conta não encontrada");
+            scanner.close();
+            throw new Error( "Conta não encontrada!");
         }
         //Inserir a senha
         System.out.println("Insira sua senha: ");
         String senha = scanner.nextLine();
+        scanner.close();
+
         //4 - Validar a Senha
         // se a senha estiver incorreta, vai mostrar um erro e terminar o programa 
         if (!contaSaque.getSenha().equals(senha)) {
             throw new Error("Senha inválida");
         }
         //5 - Informar o valor do saque
-         
+       // TODO - 5.1 - Informar o id do Caixa Eletronico
+       // 
 
 
         //PROCESSAMENTO
@@ -46,7 +67,7 @@ public class App {
 
         //SAÍDA
         //10 - Encerrar a operação
-        scanner.close();
+        
 
 
 
