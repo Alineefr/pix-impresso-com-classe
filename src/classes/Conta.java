@@ -1,22 +1,21 @@
 package classes;
 
 //classe abstrata
-public abstract class Conta implements IConta{
+public abstract class Conta implements IConta {
     protected int idConta;
     protected int numero;
     protected int agencia;
-    protected int  digitoVerificador;
+    protected int digitoVerificador;
     protected String nome;
     protected String cpf;
     // tipoConta(1-Conta Corrente | 2-Conta Salário | 3-Conta Poupança)
     protected int tipoConta;
     protected String numeroCartao;
     protected String senha;
+    protected double saldo;
 
-
-
-    public Conta(int idConta, int numero, int agencia, int digitoVerificador, String nome, String cpf, 
-            String numeroCartao, String senha) {
+    public Conta(int idConta, int numero, int agencia, int digitoVerificador, String nome, String cpf,
+            String numeroCartao, String senha, double saldo) {
         this.idConta = idConta;
         this.numero = numero;
         this.agencia = agencia;
@@ -25,13 +24,17 @@ public abstract class Conta implements IConta{
         this.cpf = cpf;
         this.numeroCartao = numeroCartao;
         this.senha = senha;
+        this.saldo = saldo;
+
+        this.setTipoConta();
     }
+    
 
     public void setTipoConta() {
-        
+
     }
 
-    public int getIdConta(){
+    public int getIdConta() {
         return tipoConta;
     }
 
@@ -104,5 +107,13 @@ public abstract class Conta implements IConta{
     }
 
 
+    public double getSaldo() {
+        return saldo;
+    }
+
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
 
 }
