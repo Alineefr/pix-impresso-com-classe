@@ -70,7 +70,7 @@ public class App {
         }
         // 5 - Informar o valor do saque
         System.out.println("Informe o valor do saque");
-
+        double valorSaque = scanner.nextDouble();
 
 
 
@@ -99,16 +99,29 @@ public class App {
 
         // PROCESSAMENTO
         // 6 - Validar se o caixa possui saldo
-        if (caixaSaque) {
-            
+        if (caixaSaque.getSaldo() < valorSaque) {
+            throw new Error("Caixa Eletrônico sem saldo");
         }
 
         // 7 - Validar se a conta possui saldo
+        if (contaSaque.getSaldo() < valorSaque) {
+            throw new Error("Conta sem saldo");
+        }
+
         // 8 - Liberar o dinheiro para o cliente
+        System.out.println("Por favor aguarde... \n O dinheiro estará disponível em instantes");
+
         // 9 - Registrar a Transação
+        Transacao transacao = new Transacao(1,
+                contaSaque.getIdConta(),
+                caixaSaque.getIdCaixaEletronico(),
+                valorSaque,
+                'D');
+        transacoes.add(transacao);
 
         // SAÍDA
         // 10 - Encerrar a operação
+        System.out.println("Operação concluída! \n Obrigado por utilizar o sistema Pix Impresso");
 
     }
 }
